@@ -2,8 +2,7 @@
   "name": "react-context-demo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://asktami.github.io/react-context-class-demo
-/",
+  "homepage": "https://asktami.github.io/react-context-class-demo/",
   "dependencies": {
     "gh-pages": "^2.1.1",
     "install": "^0.13.0",
