@@ -4,21 +4,16 @@ import MyContext from './MyContext';
 import GrandchildComponent from './GrandchildComponent';
 
 class ChildComponent extends React.Component {
-	// using static
+	// using static, allows you to do this.context... further down
+	// ex. this.context.count
 	static contextType = MyContext;
 
-	// QUESTION WHY is this.context.count NOT the value in context??? instead it is ALWAYS 0 inside this component (same for Grandchild)
 	render() {
-		let childCount = this.context.count;
-		console.log('Child this.context.count = ', childCount);
-
 		return (
 			<div>
 				<h2>ChildComponent</h2>
-				<button onClick={() => this.context.setCount(this.context.count + 1)}>
-					Count + 1
-				</button>{' '}
-				See Count in ChildComponent ({this.context.count})
+				<button onClick={this.context.count}>Count + 1</button> See Count in
+				ChildComponent ({this.context.state.count})
 				<br />
 				<GrandchildComponent />
 			</div>

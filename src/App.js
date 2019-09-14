@@ -15,6 +15,8 @@ class App extends React.Component {
 		count: 0
 	};
 
+	// QUESTION:
+	// NOTE setCount is NOT used/needed
 	setCount = num => {
 		console.log('APP this.state.count = ', this.state.count);
 
@@ -22,9 +24,6 @@ class App extends React.Component {
 		console.log('APP setCount num = ', num);
 
 		let result = this.state.count + num;
-
-		console.log('result = ', result);
-
 		this.setState({ count: result });
 
 		// this.setState(prevState => {
@@ -47,15 +46,40 @@ class App extends React.Component {
 	// create a component state object to update the values stored in MyContext
 	// pass in any variables and functions you want access to in child components (aka Consumers)
 	// pass in both the state variables AND the functions which change them
+
+	/*
+	 // QUESTION: WHY CAN NOT create a separate object and pass as <MyContext.Provider value={componentStateObj}>, because want to update state???
+
+	// This was my 1st attempt, which did NOT work:
 	componentStateObj = {
 		count: this.state.count,
 		setCount: this.setCount
 	};
 
+	// Neither did this:
+	componentStateObj = {
+		state: this.state,
+		count: () =>
+			this.setState({
+				count: this.state.count + 1
+			})
+	};
+
+	// QUESTION: why does it NOT matter if anything is inside MyContext? And why don't you need to put anything inside MyContext to refer to state?
+	*/
+
 	render() {
 		return (
 			// use Provider to pass this component state as a context value down to the entire component tree
-			<MyContext.Provider value={this.componentStateObj}>
+			<MyContext.Provider
+				value={{
+					state: this.state,
+					count: () =>
+						this.setState({
+							count: this.state.count + 1
+						})
+				}}
+			>
 				<main className="App">
 					<h1>
 						React Context Demo

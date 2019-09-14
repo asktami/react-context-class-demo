@@ -5,8 +5,7 @@ import React from 'react';
 
 // create a context object
 const MyContext = React.createContext({
-	count: 0,
-	setCount: () => {}
+	count: 0
 });
 
 export default MyContext;
