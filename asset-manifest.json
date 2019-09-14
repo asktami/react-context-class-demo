@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-context-class-demo/static/css/main.24eac033.chunk.css",
+    "main.js": "/react-context-class-demo/static/js/main.6c1a082b.chunk.js",
+    "main.js.map": "/react-context-class-demo/static/js/main.6c1a082b.chunk.js.map",
+    "runtime~main.js": "/react-context-class-demo/static/js/runtime~main.75990ecb.js",
+    "runtime~main.js.map": "/react-context-class-demo/static/js/runtime~main.75990ecb.js.map",
+    "static/js/2.f45d6ee2.chunk.js": "/react-context-class-demo/static/js/2.f45d6ee2.chunk.js",
+    "static/js/2.f45d6ee2.chunk.js.map": "/react-context-class-demo/static/js/2.f45d6ee2.chunk.js.map",
+    "index.html": "/react-context-class-demo/index.html",
+    "precache-manifest.e7fc10ff85ac6efafc5e84614ca44e8c.js": "/react-context-class-demo/precache-manifest.e7fc10ff85ac6efafc5e84614ca44e8c.js",
+    "service-worker.js": "/react-context-class-demo/service-worker.js",
+    "static/css/main.24eac033.chunk.css.map": "/react-context-class-demo/static/css/main.24eac033.chunk.css.map"
+  }
+}
