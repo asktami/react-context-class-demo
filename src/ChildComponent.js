@@ -12,8 +12,8 @@ class ChildComponent extends React.Component {
 		return (
 			<div>
 				<h2>ChildComponent</h2>
-				<button onClick={this.context.count}>Count + 1</button> See Count in
-				ChildComponent ({this.context.state.count})
+				<button onClick={() => this.context.setCount(1)}>Count + 1</button> See
+				Count in ChildComponent ({this.context.count})
 				<br />
 				<GrandchildComponent />
 			</div>

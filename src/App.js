@@ -9,26 +9,32 @@ class App extends React.Component {
 	// in this example, App = my Provider - where I define state
 	// Provider = holds and provides state
 
-	// setting default state 'count' variable value
-	// setCount is the updater function to change the state 'count' variable value
 	state = {
-		count: 0
+		count: 0 // default state 'count' variable value
 	};
 
-	// QUESTION:
-	// NOTE setCount is NOT used/needed
+	/*
+	From the React documentation: Because this.props and this.state may be updated asynchronously, you should not rely on their values for calculating the next state.
+
+	Meaning: updates to the DOM don’t happen immediately when this.setState is called.
+
+	So, since  we shouldn’t rely on this.state to calculate the next value, instead of passing in an object to this.setState, pass in a function
+
+	Do NOT do:
+	this.setState({
+		count: this.state.count + num };
+	});
+
+
+	Instead, use the component's current state (prevState), existing before user invoked this function + 'num' value passed to this function in Child and Grandchild components
+
+	Note: props = current component props, NOT function arguments
+	*/
+
 	setCount = num => {
-		console.log('APP this.state.count = ', this.state.count);
-
-		// QUESTION - why is NUM always 1???
-		console.log('APP setCount num = ', num);
-
-		let result = this.state.count + num;
-		this.setState({ count: result });
-
-		// this.setState(prevState => {
-		// 	return { count: prevState.count + 1 };
-		// });
+		this.setState((prevState, props) => {
+			return { count: prevState.count + num };
+		});
 	};
 
 	/*
@@ -47,39 +53,22 @@ class App extends React.Component {
 	// pass in any variables and functions you want access to in child components (aka Consumers)
 	// pass in both the state variables AND the functions which change them
 
-	/*
-	 // QUESTION: WHY CAN NOT create a separate object and pass as <MyContext.Provider value={componentStateObj}>, because want to update state???
-
-	// This was my 1st attempt, which did NOT work:
-	componentStateObj = {
-		count: this.state.count,
-		setCount: this.setCount
-	};
-
-	// Neither did this:
-	componentStateObj = {
-		state: this.state,
-		count: () =>
-			this.setState({
-				count: this.state.count + 1
-			})
-	};
-
-	// QUESTION: why does it NOT matter if anything is inside MyContext? And why don't you need to put anything inside MyContext to refer to state?
-	*/
-
 	render() {
+		// QUESTION: outside the render() this.state = initial values???
+
+		// render is called every time the state changes & causes the ui to refresh/update
+
+		// because I want to update STATE from child components
+		// pass in the rendered state
+		// this will NOT work if componentStateObj is defined outside the render()
+		const componentStateObj = {
+			...this.state, // pass in all state variables
+			setCount: this.setCount
+		};
+
 		return (
 			// use Provider to pass this component state as a context value down to the entire component tree
-			<MyContext.Provider
-				value={{
-					state: this.state,
-					count: () =>
-						this.setState({
-							count: this.state.count + 1
-						})
-				}}
-			>
+			<MyContext.Provider value={componentStateObj}>
 				<main className="App">
 					<h1>
 						React Context Demo
