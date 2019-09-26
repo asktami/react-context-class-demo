@@ -31,7 +31,7 @@ class App extends React.Component {
 	Note: props = current component props, NOT function arguments
 	*/
 
-	setCount = num => {
+	updateCount = num => {
 		this.setState((prevState, props) => {
 			return { count: prevState.count + num };
 		});
@@ -54,16 +54,17 @@ class App extends React.Component {
 	// pass in both the state variables AND the functions which change them
 
 	render() {
-		// QUESTION: outside the render() this.state = initial values???
+		// QUESTION: outside the render() this.state = initial values??? 1st console.log in render = intial state, after every state update render gets re-executed
 
 		// render is called every time the state changes & causes the ui to refresh/update
 
-		// because I want to update STATE from child components
-		// pass in the rendered state
 		// this will NOT work if componentStateObj is defined outside the render()
+
+		// variable is outside the return (just like in functional component, but inside the RENDER to render stuff to the ui and because of the rules of javascript classes), also b/c render re-runs when state changes
+		// if outside render it wouldn't see the state change b/c RENDER is what executes when the state changes
 		const componentStateObj = {
 			...this.state, // pass in all state variables
-			setCount: this.setCount
+			updateCount: this.updateCount
 		};
 
 		return (

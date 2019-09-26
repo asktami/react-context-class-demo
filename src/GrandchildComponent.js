@@ -9,8 +9,10 @@ class GrandchildComponent extends React.Component {
 				{context => (
 					<div>
 						<h2>GrandhildComponent</h2>
-						<button onClick={() => context.setCount(5)}>Count + 5</button> See
-						Count in GrandchildComponent ({context.count})
+						<button onClick={() => context.updateCount(5)}>
+							Count + 5
+						</button>{' '}
+						See Count in GrandchildComponent ({context.count})
 					</div>
 				)}
 			</MyContext.Consumer>
